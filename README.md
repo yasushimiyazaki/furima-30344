@@ -1,24 +1,70 @@
-# README
+# DB 設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column             | Type                | Options                 |
+|--------------------|---------------------|-------------------------|
+| nickname           | string              | null: false             |
+| email              | string              | null: false             |
+| password           | string              | null: false             |
+| last_name          | string              | null: false             |
+| first_name         | string              | null: false             |
+| last_name_kana     | string              | null: false             |
+| first_name_kana    | string              | null: false             |
+| birthday           | date                | null: false             |
 
-* Ruby version
+### Association
 
-* System dependencies
+* has_many :items
+* has_many :buys
 
-* Configuration
+## items table
 
-* Database creation
+| Column                              | Type       | Options           |
+|-------------------------------------|------------|-------------------|
+| item_name                           | string     | null: false       |
+| item_info                           | text       | null: false       |
+| item_category                       | string     | null: false       |
+| item_sales_status                   | string     | null: false       |
+| ite,_sipping_fee_status             | string     | null: false       |
+| item_prefecture                     | string     | null: false       |
+| item_scheduled_delivery             | string     | null: false       |
+| item_price                          | integer    | null: false       |
+| add_tax_price                       | integer    | null: false       |
+| profit                              | integer    | null: false       |
+| user                                | references | foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- belongs_to :buy
 
-* Services (job queues, cache servers, search engines, etc.)
+## buys table
 
-* Deployment instructions
+| Column                              | Type       | Options           |
+|-------------------------------------|------------|-------------------|
+| card_number                         | integer    | null: false       |
+| card_expiration_month               | integer    | null: false       |
+| card_expiration_year                | integer    | null: false       |
+| card_cvc                            | integer    | null: false       |
+| user                                | string     | foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :item
+- belongs_to :user
+- has_one : buy_address
+
+## buy_addresses table
+
+| Column                              | Type       | Options           |
+|-------------------------------------|------------|-------------------|
+| card_number                         | integer    | null: false       |
+| card_expiration_month               | integer    | null: false       |
+| card_expiration_year                | integer    | null: false       |
+| card_cvc                            | integer    | null: false       |
+| user                                | string     | foreign_key: true |
+
+### Association
+
+- belongs_to :buy
