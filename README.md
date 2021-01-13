@@ -6,7 +6,7 @@
 |--------------------|---------------------|-------------------------|
 | nickname           | string              | null: false             |
 | email              | string              | null: false             |
-| password           | string              | null: false             |
+| encrypted_password | string              | null: false             |
 | last_name          | string              | null: false             |
 | first_name         | string              | null: false             |
 | last_name_kana     | string              | null: false             |
@@ -25,13 +25,11 @@
 | item_name                           | string     | null: false       |
 | item_info                           | text       | null: false       |
 | item_category                       | string     | null: false       |
-| item_sales_status                   | string     | null: false       |
-| ite,_sipping_fee_status             | string     | null: false       |
-| item_prefecture                     | string     | null: false       |
-| item_scheduled_delivery             | string     | null: false       |
+| item_sales_status_id                | integer    | null: false       |
+| item_sipping_fee_status_id          | integer    | null: false       |
+| item_prefecture_id                  | integer    | null: false       |
+| item_scheduled_delivery_id          | integer    | null: false       |
 | item_price                          | integer    | null: false       |
-| add_tax_price                       | integer    | null: false       |
-| profit                              | integer    | null: false       |
 | user                                | references | foreign_key: true |
 
 ### Association
@@ -41,13 +39,17 @@
 
 ## buys table
 
-| Column                              | Type       | Options           |
-|-------------------------------------|------------|-------------------|
-| card_number                         | integer    | null: false       |
-| card_expiration_month               | integer    | null: false       |
-| card_expiration_year                | integer    | null: false       |
-| card_cvc                            | integer    | null: false       |
-| user                                | string     | foreign_key: true |
+| Column                              | Type       | Options                 |
+|-------------------------------------|------------|-------------------------|
+| item_name                           | references | foreign_key: true |
+| item_info                           | references | foreign_key: true |
+| item_category                       | references | foreign_key: true |
+| item_sales_status_id                | references | foreign_key: true |
+| item_sipping_fee_status_id          | references | foreign_key: true |
+| item_prefecture_id                  | references | foreign_key: true |
+| item_scheduled_delivery_id          | references | foreign_key: true |
+| item_price                          | references | foreign_key: true |
+| user                                | references | foreign_key: true |
 
 ### Association
 
@@ -57,13 +59,14 @@
 
 ## buy_addresses table
 
-| Column                              | Type       | Options           |
-|-------------------------------------|------------|-------------------|
-| card_number                         | integer    | null: false       |
-| card_expiration_month               | integer    | null: false       |
-| card_expiration_year                | integer    | null: false       |
-| card_cvc                            | integer    | null: false       |
-| user                                | string     | foreign_key: true |
+| Column                    | Type       | Options           |
+|---------------------------|------------|-------------------|
+| postal_code               | string     | null: false       |
+| prefecture                | string     | null: false       |
+| city                      | string     | null: false       |
+| addresses                 | string     | null: false       |
+| building                  | string     | null: false       |
+| phone_number              | string     | null: false       |
 
 ### Association
 
