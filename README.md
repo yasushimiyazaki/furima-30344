@@ -20,17 +20,17 @@
 
 ## items table
 
-| Column                              | Type       | Options           |
-|-------------------------------------|------------|-------------------|
-| item_name                           | string     | null: false       |
-| item_info                           | text       | null: false       |
-| item_category_id                    | integer    | null: false       |
-| item_sales_status_id                | integer    | null: false       |
-| item_sipping_fee_status_id          | integer    | null: false       |
-| item_prefecture_id                  | integer    | null: false       |
-| item_scheduled_delivery_id          | integer    | null: false       |
-| item_price                          | integer    | null: false       |
-| user                                | references | foreign_key: true |
+| Column                         | Type       | Options           |
+|--------------------------------|------------|-------------------|
+| name                           | string     | null: false       |
+| info                           | text       | null: false       |
+| category_id                    | integer    | null: false       |
+| sales_status_id                | integer    | null: false       |
+| sipping_fee_status_id          | integer    | null: false       |
+| prefecture_id                  | integer    | null: false       |
+| scheduled_delivery_id          | integer    | null: false       |
+| price                          | integer    | null: false       |
+| user                           | references | foreign_key: true |
 
 ### Association
 
@@ -58,7 +58,7 @@
 | prefecture_id             | integer    | null: false       |
 | city                      | string     | null: false       |
 | addresses                 | string     | null: false       |
-| building                  | string     | null: false       |
+| building                  | string     |                   |
 | phone_number              | string     | null: false       |
 | buy                       | references | foreign_key: true |
 ### Association
