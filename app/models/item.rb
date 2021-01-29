@@ -19,7 +19,7 @@ class Item < ApplicationRecord
   # validates :user,foreign_key: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  with_options numericality: { other_than: 1 } do
+  with_options numericality: { other_than: 1, message: 'Select'} do
     validates :category_id
     validates :sales_status_id
     validates :sipping_fee_status_id
