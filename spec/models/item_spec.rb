@@ -58,6 +58,16 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Price can't be blank"
       end
+      it '半角英数混合では登録できないこと' do
+        @item.price = "100abc"
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Price is out of setting range"
+      end
+      it '半角英字だけでは登録できないこと' do
+        @item.price = "abc"
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Price is out of setting range"
+      end
       it '価格は半角数字以外では登録出来ない' do
         @item.price = "５００"
         @item.valid?
@@ -102,7 +112,7 @@ RSpec.describe Item, type: :model do
         @item.scheduled_delivery_id = "1"
         @item.valid?
         expect(@item.errors.full_messages).to include "Scheduled delivery Select"
-      end
+      end      
     end
   end
 end
