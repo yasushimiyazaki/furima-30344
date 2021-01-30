@@ -155,8 +155,8 @@
       </li>
        <% end %>
 
+     <% if @items.length == 0 %>
       <li class='list'>
-       <% if @items == nil %>
        <%= link_to '#' do %>
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
@@ -170,11 +170,10 @@
               <span class='star-count'>0</span>
             </div>
           </div>
-        </div>        
-         <% end %>
-       <% end %>  
+        </div>   
+         <% end %> 
       </li>
-      
+      <% end %>  
     </ul>
   </div>
   <%# /商品一覧 %>
