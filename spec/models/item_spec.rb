@@ -59,61 +59,60 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Price can't be blank"
       end
       it '半角英数混合では登録できないこと' do
-        @item.price = "100abc"
+        @item.price = '100abc'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is out of setting range"
+        expect(@item.errors.full_messages).to include 'Price is out of setting range'
       end
       it '半角英字だけでは登録できないこと' do
-        @item.price = "abc"
+        @item.price = 'abc'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is out of setting range"
+        expect(@item.errors.full_messages).to include 'Price is out of setting range'
       end
       it '価格は半角数字以外では登録出来ない' do
-        @item.price = "５００"
+        @item.price = '５００'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price Half-width number"
+        expect(@item.errors.full_messages).to include 'Price Half-width number'
       end
       it '価格は300未満では登録出来ない' do
-        @item.price = "200"
+        @item.price = '200'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is out of setting range"
+        expect(@item.errors.full_messages).to include 'Price is out of setting range'
       end
       it '価格は10000000以上は登録出来ない' do
-        @item.price = "10000000"
+        @item.price = '10000000'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is out of setting range"
+        expect(@item.errors.full_messages).to include 'Price is out of setting range'
       end
       it '価格は300〜9999999以外では登録出来ない' do
-        @item.price = "200"
+        @item.price = '200'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is out of setting range"
+        expect(@item.errors.full_messages).to include 'Price is out of setting range'
       end
       it 'カテゴリーが未選択では登録出来ない' do
-        @item.category_id = "1"
+        @item.category_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Category Select"
+        expect(@item.errors.full_messages).to include 'Category Select'
       end
       it '商品の状態が未選択では登録出来ない' do
-        @item.sales_status_id = "1"
+        @item.sales_status_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Sales status Select"
+        expect(@item.errors.full_messages).to include 'Sales status Select'
       end
       it '配送料の負担が未選択では登録出来ない' do
-        @item.sipping_fee_status_id = "1"
+        @item.sipping_fee_status_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Sipping fee status Select"
+        expect(@item.errors.full_messages).to include 'Sipping fee status Select'
       end
       it '配送元の地域が未選択では登録出来ない' do
-        @item.prefecture_id = "1"
+        @item.prefecture_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Prefecture Select"
+        expect(@item.errors.full_messages).to include 'Prefecture Select'
       end
       it '発送までの日数が未選択では登録出来ない' do
-        @item.scheduled_delivery_id = "1"
+        @item.scheduled_delivery_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Scheduled delivery Select"
-      end      
+        expect(@item.errors.full_messages).to include 'Scheduled delivery Select'
+      end
     end
   end
 end
-
