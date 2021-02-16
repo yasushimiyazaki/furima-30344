@@ -5,6 +5,9 @@ class OrdersController < ApplicationController
   def index
     @buy = Buy.new
     contributor_confirmation
+    if @item.order.present?
+      redirect_to root_path
+    end
   end
 
   def create
