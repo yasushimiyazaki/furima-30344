@@ -15,7 +15,7 @@ class Buy
   validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
 
   def save
-    # ユーザー情報
+    # 購入情報
     order = Order.create(user_id: user_id, item_id: item_id)
     # 住所情報
     Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, addresses: addresses, building: building,
