@@ -1,17 +1,16 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
+  before_action :contributor_confirmation, only: [:index, :create]
 
   def index
     @buy = Buy.new
-    contributor_confirmation
-    if @item.order.present?
-      redirect_to root_path
-    end
+    order_present
   end
 
   def create
     @buy = Buy.new(buy_params)
+    order_present
     if @buy.valid?
       pay_item
       @buy.save
@@ -44,5 +43,9 @@ class OrdersController < ApplicationController
 
   def contributor_confirmation
     redirect_to root_path if current_user.id == @item.user.id
+  end
+
+  def order_present
+    redirect_to root_path if @item.order.present?
   end
 end
