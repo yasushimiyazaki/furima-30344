@@ -1,16 +1,14 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
-  before_action :contributor_confirmation, only: [:index, :create]
+  before_action :transition_to_top_page, only: [:index, :create]
 
   def index
     @buy = Buy.new
-    order_present
   end
 
   def create
     @buy = Buy.new(buy_params)
-    order_present
     if @buy.valid?
       pay_item
       @buy.save
@@ -41,11 +39,8 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def contributor_confirmation
-    redirect_to root_path if current_user.id == @item.user.id
+  def transition_to_top_page
+    redirect_to root_path if current_user.id == @item.user.id && @item.order.present?
   end
-
-  def order_present
-    redirect_to root_path if @item.order.present?
-  end
+ 
 end

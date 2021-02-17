@@ -29,7 +29,7 @@ RSpec.describe Buy, type: :model do
       end
 
       it '郵便番号ハイフンなしでは登録出来ない' do
-        @buy.postal_code = 111_111
+        @buy.postal_code = "111_1111"
         @buy.valid?
         expect(@buy.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
