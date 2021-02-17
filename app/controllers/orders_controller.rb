@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
   end
 
   def transition_to_top_page
-    redirect_to root_path if current_user.id == @item.user.id && @item.order.present?
+    redirect_to root_path if current_user.id == @item.user.id || @item.order.present?
   end
  
 end
