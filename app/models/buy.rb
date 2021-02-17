@@ -9,6 +9,8 @@ class Buy
     validates :phone_number, numericality: { with: /\A[0-9]+\z/, message: 'Half-width number' }
     validates :phone_number, format: { with: /\A\d{,11}\z/, message: 'is invalid' }
     validates :token
+    validates :user_id
+    validates :item_id
   end
   validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
 

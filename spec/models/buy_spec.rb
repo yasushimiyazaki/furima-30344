@@ -10,6 +10,12 @@ RSpec.describe Buy, type: :model do
       it '正常な購入情報登録' do
         expect(@buy).to be_valid
       end
+
+      it '建物名が空でも登録できる' do
+        @buy.building = nil
+        expect(@buy).to be_valid
+      end
+
     end
 
     context '購入情報を登録できないとき' do
@@ -33,6 +39,12 @@ RSpec.describe Buy, type: :model do
 
       it '都道府県が未選択では登録できない' do
         @buy.prefecture_id = nil
+        @buy.valid?
+        expect(@buy.errors.full_messages).to include("Prefecture can't be blank")
+      end
+
+      it '都道府県が０を選択していると登録できない' do
+        @buy.prefecture_id = 0
         @buy.valid?
         expect(@buy.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -64,6 +76,7 @@ RSpec.describe Buy, type: :model do
       it '電話番号は11桁以内でないと登録できない' do
         @buy.phone_number = '090111111111111'
         @buy.valid?
+        
         expect(@buy.errors.full_messages).to include('Phone number is invalid')
       end
 
@@ -73,10 +86,16 @@ RSpec.describe Buy, type: :model do
         expect(@buy.errors.full_messages).to include('Phone number is invalid')
       end
 
-      it 'order_idが空では登録できない' do
-        @buy.order_id = nil
+      it 'user_idが空では登録できない' do
+        @buy.user_id = nil
         @buy.valid?
-        expect(@buy.errors.full_messages).to include("Order can't be blank")
+        expect(@buy.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空では登録できない' do
+        @buy.item_id = nil
+        @buy.valid?
+        expect(@buy.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
