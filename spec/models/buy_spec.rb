@@ -46,8 +46,8 @@ RSpec.describe Buy, type: :model do
         expect(@buy.errors.full_messages).to include("Prefecture can't be blank")
       end
 
-      it '都道府県が０を選択していると登録できない' do
-        @buy.prefecture_id = 0
+      it '都道府県が1を選択していると登録できない' do
+        @buy.prefecture_id = 1
         @buy.valid?
         expect(@buy.errors.full_messages).to include("Prefecture can't be blank")
       end
