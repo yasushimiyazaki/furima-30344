@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    
     @buy = Buy.new(buy_params)
     if @buy.valid?
       pay_item

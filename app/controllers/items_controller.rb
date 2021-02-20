@@ -54,6 +54,6 @@ class ItemsController < ApplicationController
   end
 
   def transition_to_top_page
-    redirect_to root_path if @item.order.present?
+    redirect_to root_path if @item.order.present? || current_user.id != @item.user.id
   end
 end
